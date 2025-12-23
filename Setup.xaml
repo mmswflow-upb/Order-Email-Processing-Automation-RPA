@@ -1,4 +1,15 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Setup" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="Setup_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ufa="clr-namespace:UiPath.Forms.Activities;assembly=UiPath.Forms.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uwaj="clr-namespace:UiPath.Web.Activities.JSON;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Setup" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ufa="clr-namespace:UiPath.Forms.Activities;assembly=UiPath.Forms.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uwaj="clr-namespace:UiPath.Web.Activities.JSON;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_Settings" Type="OutArgument(scg:Dictionary(x:String, x:Object))">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Setup_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -123,6 +134,9 @@
       <x:String>Newtonsoft.Json</x:String>
       <x:String>Newtonsoft.Json.Serialization</x:String>
       <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -243,9 +257,10 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>Microsoft.Office.Interop.Word</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="7) Read the values into your variables (Setup.xaml)&#xA;&#xA;After Show Form, drag Get Form Values &#xA;UiPath Documentație&#xA;&#xA;Configure:&#xA;&#xA;Select Form: Settings.uiform&#xA;&#xA;Arguments Collection: add key→variable mappings (Key = Property Name on the form)&#xA;&#xA;Map like this:&#xA;&#xA;SubjectKeywords → SubjectKeywords&#xA;&#xA;UnreadOnly → UnreadOnly&#xA;&#xA;MaxEmailsToRead → MaxEmailsToRead&#xA;&#xA;FastMinTotal → FastMinTotalText&#xA;&#xA;FastDays → FastDays&#xA;&#xA;BulkMinItems → BulkMinItems&#xA;&#xA;BulkDays → BulkDays&#xA;&#xA;StandardDays → StandardDays&#xA;&#xA;AttachmentsFolder → AttachmentsFolder&#xA;&#xA;RestockExcelPath → RestockExcelPath&#xA;&#xA;OrdersLogPath → OrdersLogPath&#xA;&#xA;That’s it—you now have your settings in workflow variables with almost no “code-y” expressions." DisplayName="Setup" sap:VirtualizedContainerService.HintSize="1085,3059" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="7) Read the values into your variables (Setup.xaml)&#xA;&#xA;After Show Form, drag Get Form Values &#xA;UiPath Documentație&#xA;&#xA;Configure:&#xA;&#xA;Select Form: Settings.uiform&#xA;&#xA;Arguments Collection: add key→variable mappings (Key = Property Name on the form)&#xA;&#xA;Map like this:&#xA;&#xA;SubjectKeywords → SubjectKeywords&#xA;&#xA;UnreadOnly → UnreadOnly&#xA;&#xA;MaxEmailsToRead → MaxEmailsToRead&#xA;&#xA;FastMinTotal → FastMinTotalText&#xA;&#xA;FastDays → FastDays&#xA;&#xA;BulkMinItems → BulkMinItems&#xA;&#xA;BulkDays → BulkDays&#xA;&#xA;StandardDays → StandardDays&#xA;&#xA;AttachmentsFolder → AttachmentsFolder&#xA;&#xA;RestockExcelPath → RestockExcelPath&#xA;&#xA;OrdersLogPath → OrdersLogPath&#xA;&#xA;That’s it—you now have your settings in workflow variables with almost no “code-y” expressions." DisplayName="Setup" sap:VirtualizedContainerService.HintSize="1085,5059" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="SettingsJson" />
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="FormValues" />
@@ -260,6 +275,7 @@
       <Variable x:TypeArguments="x:String" Name="AttachmentsFolder" />
       <Variable x:TypeArguments="x:String" Name="RestockExcelPath" />
       <Variable x:TypeArguments="x:String" Name="OrdersLogPath" />
+      <Variable x:TypeArguments="x:String" Name="settingsPath" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -267,7 +283,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Assign the default value to the SubjectKeywords variable." sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Assign the default value to the SubjectKeywords variable." sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[SubjectKeywords]</OutArgument>
       </Assign.To>
@@ -275,7 +291,7 @@
         <InArgument x:TypeArguments="x:String">["order, purchase, invoice"]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign the default value to the UnreadOnly variable." sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign DisplayName="Assign the default value to the UnreadOnly variable." sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Boolean">[UnreadOnly]</OutArgument>
       </Assign.To>
@@ -283,7 +299,7 @@
         <InArgument x:TypeArguments="x:Boolean">[True]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign the default value to the MaxEmailsToRead variable." sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign DisplayName="Assign the default value to the MaxEmailsToRead variable." sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[MaxEmailsToRead]</OutArgument>
       </Assign.To>
@@ -291,7 +307,7 @@
         <InArgument x:TypeArguments="x:Int32">[50]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign the default value to the FastMinTotalText variable." sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign DisplayName="Assign the default value to the FastMinTotalText variable." sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Double">[FastMinTotalText]</OutArgument>
       </Assign.To>
@@ -299,7 +315,7 @@
         <InArgument x:TypeArguments="x:Int32">[200]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign the default value to the FastDays variable." sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_5">
+    <Assign DisplayName="Assign the default value to the FastDays variable." sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="Assign_5">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[FastDays]</OutArgument>
       </Assign.To>
@@ -307,7 +323,7 @@
         <InArgument x:TypeArguments="x:Int32">[2]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign the default value to the BulkMinItems variable." sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_6">
+    <Assign DisplayName="Assign the default value to the BulkMinItems variable." sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="Assign_6">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[BulkMinItems]</OutArgument>
       </Assign.To>
@@ -315,7 +331,7 @@
         <InArgument x:TypeArguments="x:Int32">[10]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign the default value to the BulkDays variable." sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_7">
+    <Assign DisplayName="Assign the default value to the BulkDays variable." sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="Assign_7">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[BulkDays]</OutArgument>
       </Assign.To>
@@ -323,7 +339,7 @@
         <InArgument x:TypeArguments="x:Int32">[5]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign the default value to the StandardDays variable." sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_8">
+    <Assign DisplayName="Assign the default value to the StandardDays variable." sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="Assign_8">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[StandardDays]</OutArgument>
       </Assign.To>
@@ -331,7 +347,7 @@
         <InArgument x:TypeArguments="x:Int32">[3]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign the default value to the AttachmentsFolder variable." sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_9">
+    <Assign DisplayName="Assign the default value to the AttachmentsFolder variable." sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="Assign_9">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[AttachmentsFolder]</OutArgument>
       </Assign.To>
@@ -339,7 +355,7 @@
         <InArgument x:TypeArguments="x:String">["C:\Orders\Attachments"]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign the default value to the RestockExcelPath variable." sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_10">
+    <Assign DisplayName="Assign the default value to the RestockExcelPath variable." sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="Assign_10">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[RestockExcelPath]</OutArgument>
       </Assign.To>
@@ -347,7 +363,7 @@
         <InArgument x:TypeArguments="x:String">["C:\Orders\Restock.xlsx"]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign the default value to the OrdersLogPath variable." sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_11">
+    <Assign DisplayName="Assign the default value to the OrdersLogPath variable." sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="Assign_11">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[OrdersLogPath]</OutArgument>
       </Assign.To>
@@ -355,12 +371,141 @@
         <InArgument x:TypeArguments="x:String">["C:\Orders\OrdersLog.csv"]</InArgument>
       </Assign.Value>
     </Assign>
-    <ufa:ShowFormActivity Height="{x:Null}" InstanceName="{x:Null}" Left="{x:Null}" ShowInTaskbar="{x:Null}" ShowMargin="{x:Null}" Top="{x:Null}" TopMost="{x:Null}" Width="{x:Null}" WindowState="{x:Null}" DisplayName="Show Form" FormId="633459d1-8abf-455b-9575-acf3779cdd3c" sap:VirtualizedContainerService.HintSize="486,227" sap2010:WorkflowViewState.IdRef="ShowFormActivity_2" IsAsync="False" Title="Order Automation - Settings">
+    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="515,275" sap2010:WorkflowViewState.IdRef="InputDialog_3" IsPassword="False" Label="Insert the path to your Settings.json file" Title="Settings File Path" TopMost="False">
+      <ui:InputDialog.Result>
+        <OutArgument x:TypeArguments="x:String">[settingsPath]</OutArgument>
+      </ui:InputDialog.Result>
+    </ui:InputDialog>
+    <ui:PathExists Exists="{x:Null}" Resource="{x:Null}" DisplayName="Get Local File or Folder" sap:VirtualizedContainerService.HintSize="515,174" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[settingsPath]" PathType="File" />
+    <If Condition="[String.IsNullOrWhiteSpace(settingsPath)]" sap:VirtualizedContainerService.HintSize="515,1376" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="513,234" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="479,170" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;No settings file provided&quot;]" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="513,1003" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Name="SettingsJsonText" />
+            <Variable x:TypeArguments="njl:JObject" Name="SettingsJO" />
+            <Variable x:TypeArguments="njl:JObject" Name="SettingsJObject" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:ReadTextFile File="{x:Null}" Content="[SettingsJsonText]" DisplayName="Read Text File" FileName="[settingsPath]" sap:VirtualizedContainerService.HintSize="479,128" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+          <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="479,178" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[SettingsJObject]" JsonString="[SettingsJsonText]" />
+          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,463" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+            <ui:MultipleAssign.AssignOperations>
+              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[SubjectKeywords]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[If(SettingsJObject.ContainsKey("SubjectKeywords"), SettingsJObject("SubjectKeywords").ToString, SubjectKeywords)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:Boolean">[UnreadOnly]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:Boolean">[If(SettingsJObject.ContainsKey("UnreadOnly"), Boolean.Parse(SettingsJObject("UnreadOnly").ToString), UnreadOnly)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:Int32">[MaxEmailsToRead]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:Int32">[If(SettingsJObject.ContainsKey("MaxEmailsToRead"), Int32.Parse(SettingsJObject("MaxEmailsToRead").ToString), MaxEmailsToRead)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:Double">[FastMinTotalText]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:Double">[If(SettingsJObject.ContainsKey("FastMinTotalText"), Int32.Parse(SettingsJObject("FastMinTotalText").ToString), FastDays)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:Int32">[FastDays]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:Int32">[If(SettingsJObject.ContainsKey("FastDays"), Int32.Parse(SettingsJObject("FastDays").ToString), FastDays)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:Int32">[BulkMinItems]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:Int32">[If(SettingsJObject.ContainsKey("BulkMinItems"), Int32.Parse(SettingsJObject("BulkMinItems").ToString), BulkMinItems)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:Int32">[BulkDays]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:Int32">[If(SettingsJObject.ContainsKey("BulkDays"), Int32.Parse(SettingsJObject("BulkDays").ToString), BulkDays)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:Int32">[StandardDays]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:Int32">[If(SettingsJObject.ContainsKey("StandardDays"), Int32.Parse(SettingsJObject("StandardDays").ToString), StandardDays)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[AttachmentsFolder]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[If(SettingsJObject.ContainsKey("AttachmentsFolder"), SettingsJObject("AttachmentsFolder").ToString, AttachmentsFolder)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[RestockExcelPath]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[If(SettingsJObject.ContainsKey("RestockExcelPath"), SettingsJObject("RestockExcelPath").ToString, RestockExcelPath)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[OrdersLogPath]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[If(SettingsJObject.ContainsKey("OrdersLogPath"), SettingsJObject("OrdersLogPath").ToString, OrdersLogPath)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+              </scg:List>
+            </ui:MultipleAssign.AssignOperations>
+          </ui:MultipleAssign>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="479,170" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;File exists and variables have been set: &quot; + SettingsJObject.ToString]" />
+        </Sequence>
+      </If.Else>
+    </If>
+    <ufa:ShowFormActivity Height="{x:Null}" InstanceName="{x:Null}" Left="{x:Null}" ShowInTaskbar="{x:Null}" ShowMargin="{x:Null}" Top="{x:Null}" TopMost="{x:Null}" Width="{x:Null}" WindowState="{x:Null}" DisplayName="Show Form" FormId="633459d1-8abf-455b-9575-acf3779cdd3c" sap:VirtualizedContainerService.HintSize="515,227" sap2010:WorkflowViewState.IdRef="ShowFormActivity_2" IsAsync="False" Title="Order Automation - Settings">
       <ufa:ShowFormActivity.Arguments>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ufa:ShowFormActivity.Arguments>
     </ufa:ShowFormActivity>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,342" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="515,342" sap2010:WorkflowViewState.IdRef="CommentOut_1">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,231" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <sap:WorkflowViewStateService.ViewState>
@@ -386,7 +531,7 @@
         </Sequence>
       </ui:CommentOut.Body>
     </ui:CommentOut>
-    <Assign DisplayName="Assign all the setting values to the FormValues dictionary." sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_35">
+    <Assign DisplayName="Assign all the setting values to the FormValues dictionary." sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="Assign_35">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[FormValues]</OutArgument>
       </Assign.To>
@@ -404,6 +549,14 @@
                 {"RestockExcelPath", RestockExcelPath},
                 {"OrdersLogPath", OrdersLogPath}
             }]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="Assign_36">
+      <Assign.To>
+        <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[out_Settings]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[FormValues]</InArgument>
       </Assign.Value>
     </Assign>
     <uwaj:SerializeJson Settings="{x:Null}" DisplayName="Convert the FormValues dictionary to a JSON string." sap:VirtualizedContainerService.HintSize="486,123" sap2010:WorkflowViewState.IdRef="SerializeJson_4" InputObject="[FormValues]" Result="[SettingsJson]" />
