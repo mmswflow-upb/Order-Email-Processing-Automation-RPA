@@ -243,9 +243,9 @@
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="EnsureFolders - Invoke Workflow File (EnsureFolders.xaml)" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="EnsureFolders.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_OrdersLogPath">[Settings("AttachmentsFolder").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_OrdersLogPath">[Settings("OrdersLogPath").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_RestockExcelPath">[Settings("RestockExcelPath").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_AttachmentsFolder">[Settings("OrdersLogPath").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_AttachmentsFolder">[Settings("AttachmentsFolder").ToString]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>
