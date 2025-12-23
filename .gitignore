@@ -1,0 +1,8 @@
+# UiPath - ignore local caches / generated folders
+**/.local/**
+**/.settings/**
+**/.objects/**
+**/.tmh/**
+**/*.log
+Settings.json
+**/.project/**
