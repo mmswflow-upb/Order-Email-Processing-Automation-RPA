@@ -248,7 +248,7 @@
       <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="In EnsureFolders.xaml, create three IN arguments:&#xA;&#xA;in_AttachmentsFolder (String)&#xA;&#xA;in_RestockExcelPath (String)&#xA;&#xA;in_OrdersLogPath (String)&#xA;Do not create OUT arguments. Keep it Windows/Modern compatible.&#xA;&#xA;In EnsureFolders.xaml, add activities to ensure required directories exist:&#xA;&#xA;Create Directory with Path = in_AttachmentsFolder&#xA;&#xA;Create Directory with Path = System.IO.Path.GetDirectoryName(in_RestockExcelPath)&#xA;&#xA;Create Directory with Path = System.IO.Path.GetDirectoryName(in_OrdersLogPath)&#xA;Use System activities (Modern). No Try/Catch unless required.&#xA;&#xA;In EnsureFolders.xaml, add Modern Excel activities to ensure the Excel file at in_RestockExcelPath exists. Inside a Use Excel File scope, ensure a worksheet named &quot;Restock&quot; exists (create it if missing). Then write headers:&#xA;&#xA;Write Cell A1 = &quot;Product&quot; on sheet &quot;Restock&quot;&#xA;&#xA;Write Cell B1 = &quot;TotalQty&quot; on sheet &quot;Restock&quot;&#xA;Prefer the setting “create file if it doesn’t exist” if available." DisplayName="EnsureFolders" sap:VirtualizedContainerService.HintSize="1085,3161" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="EnsureFolders" sap:VirtualizedContainerService.HintSize="991,3115" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="OrdersLog.csv" Name="ordersLogFileName" />
       <Variable x:TypeArguments="x:Boolean" Name="logExists" />

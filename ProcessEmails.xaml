@@ -1,4 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ProcessEmails" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="ProcessEmails_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ProcessEmails" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System.Text.RegularExpressions" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Settings" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ProcessEmails_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -25,6 +32,104 @@
       <x:String>System.Windows.Markup</x:String>
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Web.Activities.JSON.Models</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>Newtonsoft.Json.Serialization</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Microsoft.Win32.SafeHandles</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>System.Configuration.Assemblies</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.CodeDom.Compiler</x:String>
+      <x:String>System.Buffers</x:String>
+      <x:String>System.Buffers.Text</x:String>
+      <x:String>System.Buffers.Binary</x:String>
+      <x:String>System.Threading</x:String>
+      <x:String>System.Threading.Tasks</x:String>
+      <x:String>System.Threading.Tasks.Sources</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Text.Unicode</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Security.Principal</x:String>
+      <x:String>System.Security.Permissions</x:String>
+      <x:String>System.Security.Cryptography</x:String>
+      <x:String>System.Runtime</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Runtime.Remoting</x:String>
+      <x:String>System.Runtime.ExceptionServices</x:String>
+      <x:String>System.Runtime.ConstrainedExecution</x:String>
+      <x:String>System.Runtime.Versioning</x:String>
+      <x:String>System.Runtime.Loader</x:String>
+      <x:String>System.Runtime.Intrinsics</x:String>
+      <x:String>System.Runtime.Intrinsics.Wasm</x:String>
+      <x:String>System.Runtime.Intrinsics.Arm</x:String>
+      <x:String>System.Runtime.Intrinsics.X86</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.InteropServices.ObjectiveC</x:String>
+      <x:String>System.Runtime.InteropServices.Marshalling</x:String>
+      <x:String>System.Runtime.InteropServices.ComTypes</x:String>
+      <x:String>System.Runtime.CompilerServices</x:String>
+      <x:String>System.Resources</x:String>
+      <x:String>System.Reflection.Metadata</x:String>
+      <x:String>System.Reflection.Emit</x:String>
+      <x:String>System.IO.Enumeration</x:String>
+      <x:String>System.Diagnostics.SymbolStore</x:String>
+      <x:String>System.Diagnostics.Contracts</x:String>
+      <x:String>System.Diagnostics.CodeAnalysis</x:String>
+      <x:String>System.Diagnostics.Tracing</x:String>
+      <x:String>System.Collections.Concurrent</x:String>
+      <x:String>Internal</x:String>
+      <x:String>System.CodeDom</x:String>
+      <x:String>Microsoft.CSharp</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Linq.Expressions.Interpreter</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>UiPath.Workflow.Runtime</x:String>
+      <x:String>System.Activities.Tracking</x:String>
+      <x:String>System.Activities.Statements.Tracking</x:String>
+      <x:String>System.Activities.Runtime</x:String>
+      <x:String>System.Activities.Runtime.DurableInstancing</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>System.Activities.ParallelTracking</x:String>
+      <x:String>System.Activities.Hosting</x:String>
+      <x:String>System.Activities.Persistence</x:String>
+      <x:String>System.Activities.DurableInstancing</x:String>
+      <x:String>System.ComponentModel.Design.Serialization</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Security.Authentication.ExtendedProtection</x:String>
+      <x:String>System.Timers</x:String>
+      <x:String>System.ComponentModel.Design</x:String>
+      <x:String>System.Xml.Schema</x:String>
+      <x:String>System.Xml.Xsl</x:String>
+      <x:String>System.Xml.Xsl.Runtime</x:String>
+      <x:String>System.Xml.XPath</x:String>
+      <x:String>System.Xml.Resolvers</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>Microsoft.VisualBasic.FileIO</x:String>
+      <x:String>System.Security.Authentication</x:String>
+      <x:String>System.Net.Cache</x:String>
+      <x:String>System.Net.NetworkInformation</x:String>
+      <x:String>System.Net.Security</x:String>
+      <x:String>System.Net.Sockets</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Activities.Enums</x:String>
+      <x:String>UiPath.Shared.Activities.Utils</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>Microsoft.Exchange.WebServices.Data</x:String>
+      <x:String>UiPath.Mail.Exchange</x:String>
+      <x:String>UiPath.Activities.System.Date</x:String>
+      <x:String>UiPath.Core.Activities.DateTimeUtilities</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Python</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -50,13 +155,372 @@
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.Security.Cryptography</AssemblyReference>
+      <AssemblyReference>System.Security.Principal.Windows</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.Process</AssemblyReference>
+      <AssemblyReference>System.IO.MemoryMappedFiles</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Registry</AssemblyReference>
+      <AssemblyReference>System.IO.Pipes</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
+      <AssemblyReference>System.Net.HttpListener</AssemblyReference>
+      <AssemblyReference>System.Net.WebProxy</AssemblyReference>
+      <AssemblyReference>System.Net.NameResolution</AssemblyReference>
+      <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
+      <AssemblyReference>System.Net.WebClient</AssemblyReference>
+      <AssemblyReference>System.Net.Requests</AssemblyReference>
+      <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>System.Threading.AccessControl</AssemblyReference>
+      <AssemblyReference>System.Threading</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>System.Threading.Tasks.Parallel</AssemblyReference>
+      <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
+      <AssemblyReference>System.Text.Encodings.Web</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Security.Claims</AssemblyReference>
+      <AssemblyReference>System.Security.Cryptography.Pkcs</AssemblyReference>
+      <AssemblyReference>System.Security.Cryptography.ProtectedData</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.CompilerServices.VisualC</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms</AssemblyReference>
+      <AssemblyReference>System.Resources.Writer</AssemblyReference>
+      <AssemblyReference>Microsoft.PowerShell.Commands.Diagnostics</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.FileVersionInfo</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.PerformanceCounter</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.DiagnosticSource</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.TraceSource</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.EventLog</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.TextWriterTraceListener</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.StackTrace</AssemblyReference>
+      <AssemblyReference>System.Collections.Concurrent</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>System.Net.Security</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Private.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Xml.XPath.XDocument</AssemblyReference>
+      <AssemblyReference>System.Net.NetworkInformation</AssemblyReference>
+      <AssemblyReference>System.Net.Ping</AssemblyReference>
+      <AssemblyReference>System.Net.Sockets</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Persistence.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>Microsoft.Exchange.WebServices</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Python</AssemblyReference>
+      <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ProcessEmails" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Create variables in ProcessEmails.xaml:&#xA;&#xA;SubjectKeywords (String)&#xA;&#xA;UnreadOnly (Boolean)&#xA;&#xA;MaxEmailsToRead (Int32)&#xA;&#xA;AttachmentsFolder (String)&#xA;&#xA;RestockExcelPath (String)&#xA;&#xA;OrdersLogPath (String)&#xA;&#xA;FastMinTotal (Decimal)&#xA;&#xA;FastMinTotalText (String)&#xA;&#xA;FastDays (Int32)&#xA;&#xA;BulkMinItems (Int32)&#xA;&#xA;BulkDays (Int32)&#xA;&#xA;StandardDays (Int32)&#xA;&#xA;Add a Multiple Assign at the top:&#xA;&#xA;VB-style (UiPath expression fields often look like VB even in C# projects):&#xA;&#xA;SubjectKeywords = in_Settings(&quot;SubjectKeywords&quot;).ToString&#xA;&#xA;UnreadOnly = Boolean.Parse(in_Settings(&quot;UnreadOnly&quot;).ToString)&#xA;&#xA;MaxEmailsToRead = Int32.Parse(in_Settings(&quot;MaxEmailsToRead&quot;).ToString)&#xA;&#xA;AttachmentsFolder = in_Settings(&quot;AttachmentsFolder&quot;).ToString&#xA;&#xA;RestockExcelPath = in_Settings(&quot;RestockExcelPath&quot;).ToString&#xA;&#xA;OrdersLogPath = in_Settings(&quot;OrdersLogPath&quot;).ToString&#xA;&#xA;FastMinTotalText = in_Settings(&quot;FastMinTotal&quot;).ToString&#xA;&#xA;FastDays = Int32.Parse(in_Settings(&quot;FastDays&quot;).ToString)&#xA;&#xA;BulkMinItems = Int32.Parse(in_Settings(&quot;BulkMinItems&quot;).ToString)&#xA;&#xA;BulkDays = Int32.Parse(in_Settings(&quot;BulkDays&quot;).ToString)&#xA;&#xA;StandardDays = Int32.Parse(in_Settings(&quot;StandardDays&quot;).ToString)&#xA;&#xA;Then add:&#xA;&#xA;Assign FastMinTotal = Decimal.Parse(FastMinTotalText)&#xA;&#xA;(Later we can make this parse safer, but this is fine if your JSON is clean.)" DisplayName="ProcessEmails" sap:VirtualizedContainerService.HintSize="991.0000000000001,4441" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="njl:JObject" Name="settingsJObject" />
+      <Variable x:TypeArguments="x:String" Name="SubjectKeywords" />
+      <Variable x:TypeArguments="x:Boolean" Name="UnreadOnly" />
+      <Variable x:TypeArguments="x:Int32" Name="MaxEmailsToRead" />
+      <Variable x:TypeArguments="x:String" Name="AttachmentsFolder" />
+      <Variable x:TypeArguments="x:String" Name="RestockExcelPath" />
+      <Variable x:TypeArguments="x:String" Name="OrdersLogPath" />
+      <Variable x:TypeArguments="x:String" Name="FastMinTotalText" />
+      <Variable x:TypeArguments="x:Int32" Name="FastDays" />
+      <Variable x:TypeArguments="x:Int32" Name="BulkMinItems" />
+      <Variable x:TypeArguments="x:Int32" Name="BulkDays" />
+      <Variable x:TypeArguments="x:Int32" Name="StandardDays" />
+      <Variable x:TypeArguments="x:Decimal" Name="FastMinTotal" />
+      <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="messages" />
+      <Variable x:TypeArguments="s:String[]" Name="keywords" />
+      <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="candidates" />
+      <Variable x:TypeArguments="x:Boolean" Name="matchFound" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize the input settings JSON string to make its properties accessible." sap:VirtualizedContainerService.HintSize="562,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[settingsJObject]" JsonString="[in_Settings]" />
+    <Sequence DisplayName="Assign initial values to variables from the deserialized settings object." sap:VirtualizedContainerService.HintSize="562,2008" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Assign SubjectKeywords from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_15">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[SubjectKeywords]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[settingsJObject("SubjectKeywords").ToString()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign UnreadOnly from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_16">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Boolean">[UnreadOnly]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Boolean">[Boolean.Parse(settingsJObject("UnreadOnly").ToString())]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign MaxEmailsToRead from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_3">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Int32">[MaxEmailsToRead]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Int32">[Integer.Parse(settingsJObject("MaxEmailsToRead").ToString())]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign AttachmentsFolder from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_4">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[AttachmentsFolder]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[settingsJObject("AttachmentsFolder").ToString()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign RestockExcelPath from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_5">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[RestockExcelPath]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[settingsJObject("RestockExcelPath").ToString()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign OrdersLogPath from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_6">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[OrdersLogPath]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[settingsJObject("OrdersLogPath").ToString()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign FastMinTotalText from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_7">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[FastMinTotalText]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[settingsJObject("FastMinTotal").ToString()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign FastDays from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_8">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Int32">[FastDays]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Int32">[Integer.Parse(settingsJObject("FastDays").ToString())]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign BulkMinItems from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_9">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Int32">[BulkMinItems]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Int32">[Integer.Parse(settingsJObject("BulkMinItems").ToString())]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign BulkDays from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_10">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Int32">[BulkDays]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Int32">[Integer.Parse(settingsJObject("BulkDays").ToString())]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign StandardDays from settings." sap:VirtualizedContainerService.HintSize="417,166" sap2010:WorkflowViewState.IdRef="Assign_11">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Int32">[StandardDays]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Int32">[Integer.Parse(settingsJObject("StandardDays").ToString())]</InArgument>
+        </Assign.Value>
+      </Assign>
+    </Sequence>
+    <Assign DisplayName="Assign the final value to FastMinTotal by parsing the text value." sap:VirtualizedContainerService.HintSize="562,175" sap2010:WorkflowViewState.IdRef="Assign_12">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Decimal">[FastMinTotal]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Decimal">[Decimal.Parse(FastMinTotalText)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Sequence DisplayName="Use the Desktop Outlook App to get emails and filter them." sap:VirtualizedContainerService.HintSize="562,1984" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:GetOutlookMailMessages Account="{x:Null}" Filter="{x:Null}" FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" ConnectionMode="LegacyConfiguration" DisplayName="Get mail messages from the Inbox in Outlook Desktop, storing them in a list named 'messages'." GetAttachements="False" sap:VirtualizedContainerService.HintSize="528,123" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_1" MailFolder="Inbox" MarkAsRead="False" Messages="[messages]" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Top="[MaxEmailsToRead]" UseISConnection="False">
+        <ui:GetOutlookMailMessages.ConnectionDetailsBackupSlot>
+          <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="{x:Null}">
+            <usau:BackupSlot.BackupValues>
+              <scg:Dictionary x:TypeArguments="umae:ConnectionDetails, scg:List(x:Object)" />
+            </usau:BackupSlot.BackupValues>
+          </usau:BackupSlot>
+        </ui:GetOutlookMailMessages.ConnectionDetailsBackupSlot>
+      </ui:GetOutlookMailMessages>
+      <Assign DisplayName="Initialize a string array variable 'keywords' by splitting a comma-separated string 'SubjectKeywords'." sap:VirtualizedContainerService.HintSize="528,175" sap2010:WorkflowViewState.IdRef="Assign_13">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[keywords]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[SubjectKeywords.Split(","c)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Initialize an empty list of mail messages named 'candidates'." sap:VirtualizedContainerService.HintSize="528,175" sap2010:WorkflowViewState.IdRef="Assign_14">
+        <Assign.To>
+          <OutArgument x:TypeArguments="scg:List(snm:MailMessage)">[candidates]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="scg:List(snm:MailMessage)">[New List(Of System.Net.Mail.MailMessage)()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For each mail message 'msg' in the 'messages' list:" sap:VirtualizedContainerService.HintSize="528,1428" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[messages]">
+        <ui:ForEach.Body>
+          <ActivityAction x:TypeArguments="snm:MailMessage">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="msg" />
+            </ActivityAction.Argument>
+            <Sequence sap2010:Annotation.AnnotationText="Create variables in ProcessEmails.xaml:&#xA;&#xA;SubjectKeywords (String)&#xA;&#xA;UnreadOnly (Boolean)&#xA;&#xA;MaxEmailsToRead (Int32)&#xA;&#xA;AttachmentsFolder (String)&#xA;&#xA;RestockExcelPath (String)&#xA;&#xA;OrdersLogPath (String)&#xA;&#xA;FastMinTotal (Decimal)&#xA;&#xA;FastMinTotalText (String)&#xA;&#xA;FastDays (Int32)&#xA;&#xA;BulkMinItems (Int32)&#xA;&#xA;BulkDays (Int32)&#xA;&#xA;StandardDays (Int32)&#xA;&#xA;OrdersLogPath = in_Settings(&quot;OrdersLogPath&quot;).ToString&#xA;&#xA;FastMinTotalText = in_Settings(&quot;FastMinTotal&quot;).ToString&#xA;&#xA;FastDays = Int32.Parse(in_Settings(&quot;FastDays&quot;).ToString)&#xA;&#xA;BulkMinItems = Int32.Parse(in_Settings(&quot;BulkMinItems&quot;).ToString)&#xA;&#xA;BulkDays = Int32.Parse(in_Settings(&quot;BulkDays&quot;).ToString)&#xA;&#xA;StandardDays = Int32.Parse(in_Settings(&quot;StandardDays&quot;).ToString)&#xA;&#xA;Then add:&#xA;&#xA;Add a Multiple Assign at the top:&#xA;&#xA;VB-style (UiPath expression fields often look like VB even in C# projects):&#xA;&#xA;SubjectKeywords = in_Settings(&quot;SubjectKeywords&quot;).ToString&#xA;&#xA;UnreadOnly = Boolean.Parse(in_Settings(&quot;UnreadOnly&quot;).ToString)&#xA;&#xA;MaxEmailsToRead = Int32.Parse(in_Settings(&quot;MaxEmailsToRead&quot;).ToString)&#xA;&#xA;AttachmentsFolder = in_Settings(&quot;AttachmentsFolder&quot;).ToString&#xA;&#xA;RestockExcelPath = in_Settings(&quot;RestockExcelPath&quot;).ToString&#xA;&#xA;Assign FastMinTotal = Decimal.Parse(FastMinTotalText)" DisplayName="Body" sap:VirtualizedContainerService.HintSize="526,1306" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="sd:DataTable" Name="dtItems" />
+                <Variable x:TypeArguments="s:String[]" Name="lines" />
+                <Variable x:TypeArguments="scg:IEnumerable(str:Match)" Name="matches" />
+                <Variable x:TypeArguments="x:String" Name="product" />
+                <Variable x:TypeArguments="x:Int32" Name="qty" />
+                <Variable x:TypeArguments="x:Decimal" Name="unitPrice" />
+                <Variable x:TypeArguments="x:Decimal" Name="lineTotal" />
+                <Variable x:TypeArguments="x:Decimal" Name="OrderTotal" />
+                <Variable x:TypeArguments="x:Int32" Name="ItemCount" />
+                <Variable x:TypeArguments="x:Int32" Name="DeliveryDays" />
+                <Variable x:TypeArguments="s:DateTime" Name="EtaDate" />
+                <Variable x:TypeArguments="x:String" Name="saveFolder" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign DisplayName="Initialize a boolean flag 'matchFound' to false to track if a keyword is found in the email subject." sap:VirtualizedContainerService.HintSize="492,179" sap2010:WorkflowViewState.IdRef="Assign_17">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Boolean">[matchFound]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Boolean">[False]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="Iterate through each keyword in the 'keywords' array to check against the email subject." sap:VirtualizedContainerService.HintSize="492,722" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[keywords]">
+                <ui:ForEach.Body>
+                  <ActivityAction x:TypeArguments="x:String">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:String" Name="keyword" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="490,587" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If Condition="[msg.Subject.ToLower().Contains(keyword.ToLower())]" DisplayName="If the email subject contains the current keyword (case-insensitive), set 'matchFound' to true and break the loop." sap:VirtualizedContainerService.HintSize="456,523" sap2010:WorkflowViewState.IdRef="If_3">
+                        <If.Then>
+                          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,295" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign DisplayName="Set the matchFound flag to true." sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_18">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">[matchFound]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">[True]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:Break DisplayName="Break the inner loop since a match has been found." sap:VirtualizedContainerService.HintSize="416,52" sap2010:WorkflowViewState.IdRef="Break_1" />
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ForEach.Body>
+              </ui:ForEach>
+              <If Condition="[matchFound]" DisplayName="If a keyword match was found in the subject, add the current email message to the 'candidates' list." sap:VirtualizedContainerService.HintSize="492,341" sap2010:WorkflowViewState.IdRef="If_4">
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,113" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <AddToCollection x:TypeArguments="snm:MailMessage" Collection="[candidates]" DisplayName="Add the email message to the list of candidates." sap:VirtualizedContainerService.HintSize="416,49" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="[msg]" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEach.Body>
+      </ui:ForEach>
+    </Sequence>
   </Sequence>
 </Activity>
