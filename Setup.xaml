@@ -502,7 +502,17 @@
     </If>
     <ufa:ShowFormActivity Height="{x:Null}" InstanceName="{x:Null}" Left="{x:Null}" ShowInTaskbar="{x:Null}" ShowMargin="{x:Null}" Top="{x:Null}" TopMost="{x:Null}" Width="{x:Null}" WindowState="{x:Null}" DisplayName="Show Form" FormId="633459d1-8abf-455b-9575-acf3779cdd3c" sap:VirtualizedContainerService.HintSize="515,227" sap2010:WorkflowViewState.IdRef="ShowFormActivity_2" IsAsync="False" Title="Order Automation - Settings">
       <ufa:ShowFormActivity.Arguments>
-        <scg:Dictionary x:TypeArguments="x:String, Argument" />
+        <InOutArgument x:TypeArguments="x:String" x:Key="SubjectKeywords">[SubjectKeywords]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:Boolean" x:Key="UnreadOnly">[UnreadOnly]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:Int32" x:Key="MaxEmailsToRead">[MaxEmailsToRead]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:Double" x:Key="FastMinTotal">[FastMinTotalText]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:Int32" x:Key="FastDays">[FastDays]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:Int32" x:Key="BulkMinItems">[BulkMinItems]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:Int32" x:Key="BulkDays">[BulkDays]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:Int32" x:Key="StandardDays">[StandardDays]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="AttachmentsFolder">[AttachmentsFolder]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="RestockExcelPath">[RestockExcelPath]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="OrdersLogPath">[OrdersLogPath]</InOutArgument>
       </ufa:ShowFormActivity.Arguments>
     </ufa:ShowFormActivity>
     <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="515,342" sap2010:WorkflowViewState.IdRef="CommentOut_1">
@@ -559,7 +569,7 @@
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[FormValues]</InArgument>
       </Assign.Value>
     </Assign>
-    <uwaj:SerializeJson Settings="{x:Null}" DisplayName="Convert the FormValues dictionary to a JSON string." sap:VirtualizedContainerService.HintSize="486,123" sap2010:WorkflowViewState.IdRef="SerializeJson_4" InputObject="[FormValues]" Result="[SettingsJson]" />
-    <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Save the JSON string to a file named &quot;Settings.json&quot;." FileName="Settings.json" sap:VirtualizedContainerService.HintSize="486,167" sap2010:WorkflowViewState.IdRef="WriteTextFile_3" Text="[SettingsJson]" />
+    <uwaj:SerializeJson Settings="{x:Null}" DisplayName="Convert the FormValues dictionary to a JSON string." sap:VirtualizedContainerService.HintSize="515,123" sap2010:WorkflowViewState.IdRef="SerializeJson_4" InputObject="[FormValues]" Result="[SettingsJson]" />
+    <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Save the JSON string to a file named &quot;Settings.json&quot;." FileName="Settings.json" sap:VirtualizedContainerService.HintSize="515,167" sap2010:WorkflowViewState.IdRef="WriteTextFile_3" Text="[SettingsJson]" />
   </Sequence>
 </Activity>
