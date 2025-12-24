@@ -226,7 +226,7 @@
       <AssemblyReference>System.Net.Sockets</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Open Main.xaml&#xA;&#xA;Add Invoke Workflow File → choose EnsureFolders.xaml&#xA;&#xA;In Import Arguments, map:&#xA;&#xA;in_AttachmentsFolder ← your settings variable AttachmentsFolder&#xA;&#xA;in_RestockExcelPath ← RestockExcelPath&#xA;&#xA;in_OrdersLogPath ← OrdersLogPath" DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1091,805.6566666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Open Main.xaml&#xA;&#xA;Add Invoke Workflow File → choose EnsureFolders.xaml&#xA;&#xA;In Import Arguments, map:&#xA;&#xA;in_AttachmentsFolder ← your settings variable AttachmentsFolder&#xA;&#xA;in_RestockExcelPath ← RestockExcelPath&#xA;&#xA;in_OrdersLogPath ← OrdersLogPath" DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="997,805.6566666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="Settings" />
     </Sequence.Variables>
@@ -241,11 +241,16 @@
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Settings">[Settings]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="EnsureFolders - Invoke Workflow File (EnsureFolders.xaml)" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="EnsureFolders.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="EnsureFolders - Invoke Workflow File (EnsureFolders.xaml)" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="EnsureFolders.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="in_OrdersLogPath">[Settings("OrdersLogPath").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_RestockExcelPath">[Settings("RestockExcelPath").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_AttachmentsFolder">[Settings("AttachmentsFolder").ToString]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ProcessEmails - Invoke Workflow File (ProcessEmails.xaml)" sap:VirtualizedContainerService.HintSize="450,230" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="ProcessEmails.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Settings">[Settings]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>

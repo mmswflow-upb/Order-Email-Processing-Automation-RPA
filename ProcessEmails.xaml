@@ -1,6 +1,10 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ProcessEmails" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System.Text.RegularExpressions" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ProcessEmails" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System.Text.RegularExpressions" xmlns:uasa="clr-namespace:UiPath.Activities.System.Arrays;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="in_Settings" Type="InArgument(x:String)" />
+    <x:Property Name="in_Settings" Type="InArgument(scg:Dictionary(x:String, x:Object))">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -130,6 +134,7 @@
       <x:String>UiPath.Platform.ResourceHandling</x:String>
       <x:String>UiPath.Mail.Exchange.Activities</x:String>
       <x:String>UiPath.Python</x:String>
+      <x:String>UiPath.Activities.System.Arrays</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -254,9 +259,8 @@
       <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Create variables in ProcessEmails.xaml:&#xA;&#xA;SubjectKeywords (String)&#xA;&#xA;UnreadOnly (Boolean)&#xA;&#xA;MaxEmailsToRead (Int32)&#xA;&#xA;AttachmentsFolder (String)&#xA;&#xA;RestockExcelPath (String)&#xA;&#xA;OrdersLogPath (String)&#xA;&#xA;FastMinTotal (Decimal)&#xA;&#xA;FastMinTotalText (String)&#xA;&#xA;FastDays (Int32)&#xA;&#xA;BulkMinItems (Int32)&#xA;&#xA;BulkDays (Int32)&#xA;&#xA;StandardDays (Int32)&#xA;&#xA;Add a Multiple Assign at the top:&#xA;&#xA;VB-style (UiPath expression fields often look like VB even in C# projects):&#xA;&#xA;SubjectKeywords = in_Settings(&quot;SubjectKeywords&quot;).ToString&#xA;&#xA;UnreadOnly = Boolean.Parse(in_Settings(&quot;UnreadOnly&quot;).ToString)&#xA;&#xA;MaxEmailsToRead = Int32.Parse(in_Settings(&quot;MaxEmailsToRead&quot;).ToString)&#xA;&#xA;AttachmentsFolder = in_Settings(&quot;AttachmentsFolder&quot;).ToString&#xA;&#xA;RestockExcelPath = in_Settings(&quot;RestockExcelPath&quot;).ToString&#xA;&#xA;OrdersLogPath = in_Settings(&quot;OrdersLogPath&quot;).ToString&#xA;&#xA;FastMinTotalText = in_Settings(&quot;FastMinTotal&quot;).ToString&#xA;&#xA;FastDays = Int32.Parse(in_Settings(&quot;FastDays&quot;).ToString)&#xA;&#xA;BulkMinItems = Int32.Parse(in_Settings(&quot;BulkMinItems&quot;).ToString)&#xA;&#xA;BulkDays = Int32.Parse(in_Settings(&quot;BulkDays&quot;).ToString)&#xA;&#xA;StandardDays = Int32.Parse(in_Settings(&quot;StandardDays&quot;).ToString)&#xA;&#xA;Then add:&#xA;&#xA;Assign FastMinTotal = Decimal.Parse(FastMinTotalText)&#xA;&#xA;(Later we can make this parse safer, but this is fine if your JSON is clean.)" DisplayName="ProcessEmails" sap:VirtualizedContainerService.HintSize="991.0000000000001,4441" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Create variables in ProcessEmails.xaml:&#xA;&#xA;SubjectKeywords (String)&#xA;&#xA;UnreadOnly (Boolean)&#xA;&#xA;MaxEmailsToRead (Int32)&#xA;&#xA;AttachmentsFolder (String)&#xA;&#xA;RestockExcelPath (String)&#xA;&#xA;OrdersLogPath (String)&#xA;&#xA;FastMinTotal (Decimal)&#xA;&#xA;FastMinTotalText (String)&#xA;&#xA;FastDays (Int32)&#xA;&#xA;BulkMinItems (Int32)&#xA;&#xA;BulkDays (Int32)&#xA;&#xA;StandardDays (Int32)&#xA;&#xA;Add a Multiple Assign at the top:&#xA;&#xA;VB-style (UiPath expression fields often look like VB even in C# projects):&#xA;&#xA;SubjectKeywords = in_Settings(&quot;SubjectKeywords&quot;).ToString&#xA;&#xA;UnreadOnly = Boolean.Parse(in_Settings(&quot;UnreadOnly&quot;).ToString)&#xA;&#xA;MaxEmailsToRead = Int32.Parse(in_Settings(&quot;MaxEmailsToRead&quot;).ToString)&#xA;&#xA;AttachmentsFolder = in_Settings(&quot;AttachmentsFolder&quot;).ToString&#xA;&#xA;RestockExcelPath = in_Settings(&quot;RestockExcelPath&quot;).ToString&#xA;&#xA;OrdersLogPath = in_Settings(&quot;OrdersLogPath&quot;).ToString&#xA;&#xA;FastMinTotalText = in_Settings(&quot;FastMinTotal&quot;).ToString&#xA;&#xA;FastDays = Int32.Parse(in_Settings(&quot;FastDays&quot;).ToString)&#xA;&#xA;BulkMinItems = Int32.Parse(in_Settings(&quot;BulkMinItems&quot;).ToString)&#xA;&#xA;BulkDays = Int32.Parse(in_Settings(&quot;BulkDays&quot;).ToString)&#xA;&#xA;StandardDays = Int32.Parse(in_Settings(&quot;StandardDays&quot;).ToString)&#xA;&#xA;Then add:&#xA;&#xA;Assign FastMinTotal = Decimal.Parse(FastMinTotalText)&#xA;&#xA;(Later we can make this parse safer, but this is fine if your JSON is clean.)" DisplayName="ProcessEmails" sap:VirtualizedContainerService.HintSize="991,2774" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="njl:JObject" Name="settingsJObject" />
       <Variable x:TypeArguments="x:String" Name="SubjectKeywords" />
       <Variable x:TypeArguments="x:Boolean" Name="UnreadOnly" />
       <Variable x:TypeArguments="x:Int32" Name="MaxEmailsToRead" />
@@ -280,11 +284,11 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize the input settings JSON string to make its properties accessible." sap:VirtualizedContainerService.HintSize="562,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[settingsJObject]" JsonString="[in_Settings]" />
-    <Sequence DisplayName="Assign initial values to variables from the deserialized settings object." sap:VirtualizedContainerService.HintSize="562,2008" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Assign initial values to variables from the deserialized settings object." sap:VirtualizedContainerService.HintSize="562,57" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <Assign DisplayName="Assign SubjectKeywords from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_15">
@@ -292,7 +296,7 @@
           <OutArgument x:TypeArguments="x:String">[SubjectKeywords]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[settingsJObject("SubjectKeywords").ToString()]</InArgument>
+          <InArgument x:TypeArguments="x:String">[in_Settings("SubjectKeywords").ToString()]</InArgument>
         </Assign.Value>
       </Assign>
       <Assign DisplayName="Assign UnreadOnly from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_16">
@@ -300,7 +304,7 @@
           <OutArgument x:TypeArguments="x:Boolean">[UnreadOnly]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:Boolean">[Boolean.Parse(settingsJObject("UnreadOnly").ToString())]</InArgument>
+          <InArgument x:TypeArguments="x:Boolean">[Boolean.Parse(in_Settings("UnreadOnly").ToString)]</InArgument>
         </Assign.Value>
       </Assign>
       <Assign DisplayName="Assign MaxEmailsToRead from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_3">
@@ -308,7 +312,7 @@
           <OutArgument x:TypeArguments="x:Int32">[MaxEmailsToRead]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:Int32">[Integer.Parse(settingsJObject("MaxEmailsToRead").ToString())]</InArgument>
+          <InArgument x:TypeArguments="x:Int32">[Integer.Parse(in_Settings("MaxEmailsToRead").ToString())]</InArgument>
         </Assign.Value>
       </Assign>
       <Assign DisplayName="Assign AttachmentsFolder from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_4">
@@ -316,7 +320,7 @@
           <OutArgument x:TypeArguments="x:String">[AttachmentsFolder]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[settingsJObject("AttachmentsFolder").ToString()]</InArgument>
+          <InArgument x:TypeArguments="x:String">[in_Settings("AttachmentsFolder").ToString()]</InArgument>
         </Assign.Value>
       </Assign>
       <Assign DisplayName="Assign RestockExcelPath from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_5">
@@ -324,7 +328,7 @@
           <OutArgument x:TypeArguments="x:String">[RestockExcelPath]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[settingsJObject("RestockExcelPath").ToString()]</InArgument>
+          <InArgument x:TypeArguments="x:String">[in_Settings("RestockExcelPath").ToString()]</InArgument>
         </Assign.Value>
       </Assign>
       <Assign DisplayName="Assign OrdersLogPath from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_6">
@@ -332,7 +336,7 @@
           <OutArgument x:TypeArguments="x:String">[OrdersLogPath]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[settingsJObject("OrdersLogPath").ToString()]</InArgument>
+          <InArgument x:TypeArguments="x:String">[in_Settings("OrdersLogPath").ToString()]</InArgument>
         </Assign.Value>
       </Assign>
       <Assign DisplayName="Assign FastMinTotalText from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_7">
@@ -340,7 +344,7 @@
           <OutArgument x:TypeArguments="x:String">[FastMinTotalText]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[settingsJObject("FastMinTotal").ToString()]</InArgument>
+          <InArgument x:TypeArguments="x:String">[in_Settings("FastMinTotal").ToString()]</InArgument>
         </Assign.Value>
       </Assign>
       <Assign DisplayName="Assign FastDays from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_8">
@@ -348,7 +352,7 @@
           <OutArgument x:TypeArguments="x:Int32">[FastDays]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:Int32">[Integer.Parse(settingsJObject("FastDays").ToString())]</InArgument>
+          <InArgument x:TypeArguments="x:Int32">[Integer.Parse(in_Settings("FastDays").ToString())]</InArgument>
         </Assign.Value>
       </Assign>
       <Assign DisplayName="Assign BulkMinItems from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_9">
@@ -356,7 +360,7 @@
           <OutArgument x:TypeArguments="x:Int32">[BulkMinItems]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:Int32">[Integer.Parse(settingsJObject("BulkMinItems").ToString())]</InArgument>
+          <InArgument x:TypeArguments="x:Int32">[Integer.Parse(in_Settings("BulkMinItems").ToString())]</InArgument>
         </Assign.Value>
       </Assign>
       <Assign DisplayName="Assign BulkDays from settings." sap:VirtualizedContainerService.HintSize="417,175" sap2010:WorkflowViewState.IdRef="Assign_10">
@@ -364,7 +368,7 @@
           <OutArgument x:TypeArguments="x:Int32">[BulkDays]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:Int32">[Integer.Parse(settingsJObject("BulkDays").ToString())]</InArgument>
+          <InArgument x:TypeArguments="x:Int32">[Integer.Parse(in_Settings("BulkDays").ToString())]</InArgument>
         </Assign.Value>
       </Assign>
       <Assign DisplayName="Assign StandardDays from settings." sap:VirtualizedContainerService.HintSize="417,166" sap2010:WorkflowViewState.IdRef="Assign_11">
@@ -372,39 +376,74 @@
           <OutArgument x:TypeArguments="x:Int32">[StandardDays]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:Int32">[Integer.Parse(settingsJObject("StandardDays").ToString())]</InArgument>
+          <InArgument x:TypeArguments="x:Int32">[Integer.Parse(in_Settings("StandardDays").ToString())]</InArgument>
         </Assign.Value>
       </Assign>
     </Sequence>
-    <Assign DisplayName="Assign the final value to FastMinTotal by parsing the text value." sap:VirtualizedContainerService.HintSize="562,175" sap2010:WorkflowViewState.IdRef="Assign_12">
+    <Assign DisplayName="Assign the final value to FastMinTotal by parsing the text value." sap:VirtualizedContainerService.HintSize="562,57" sap2010:WorkflowViewState.IdRef="Assign_12">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Decimal">[FastMinTotal]</OutArgument>
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="x:Decimal">[Decimal.Parse(FastMinTotalText)]</InArgument>
       </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Sequence DisplayName="Use the Desktop Outlook App to get emails and filter them." sap:VirtualizedContainerService.HintSize="562,1984" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence DisplayName="Use the Desktop Outlook App to get emails and filter them." sap:VirtualizedContainerService.HintSize="562,2344" sap2010:WorkflowViewState.IdRef="Sequence_4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:GetOutlookMailMessages Account="{x:Null}" Filter="{x:Null}" FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" ConnectionMode="LegacyConfiguration" DisplayName="Get mail messages from the Inbox in Outlook Desktop, storing them in a list named 'messages'." GetAttachements="False" sap:VirtualizedContainerService.HintSize="528,123" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_1" MailFolder="Inbox" MarkAsRead="False" Messages="[messages]" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Top="[MaxEmailsToRead]" UseISConnection="False">
-        <ui:GetOutlookMailMessages.ConnectionDetailsBackupSlot>
-          <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="{x:Null}">
-            <usau:BackupSlot.BackupValues>
-              <scg:Dictionary x:TypeArguments="umae:ConnectionDetails, scg:List(x:Object)" />
-            </usau:BackupSlot.BackupValues>
-          </usau:BackupSlot>
-        </ui:GetOutlookMailMessages.ConnectionDetailsBackupSlot>
-      </ui:GetOutlookMailMessages>
+      <If Condition="[UnreadOnly]" sap:VirtualizedContainerService.HintSize="528,499" sap2010:WorkflowViewState.IdRef="If_5">
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_16">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:GetOutlookMailMessages Account="{x:Null}" Filter="{x:Null}" FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" ConnectionMode="LegacyConfiguration" DisplayName="Get mail messages from the Inbox in Outlook Desktop, storing them in a list named 'messages'." GetAttachements="False" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_2" MailFolder="Inbox" MarkAsRead="True" Messages="[messages]" OnlyUnreadMessages="True" OrderByDate="NewestFirst" Top="[MaxEmailsToRead]" UseISConnection="False">
+              <ui:GetOutlookMailMessages.ConnectionDetailsBackupSlot>
+                <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="{x:Null}">
+                  <usau:BackupSlot.BackupValues>
+                    <scg:Dictionary x:TypeArguments="umae:ConnectionDetails, scg:List(x:Object)" />
+                  </usau:BackupSlot.BackupValues>
+                </usau:BackupSlot>
+              </ui:GetOutlookMailMessages.ConnectionDetailsBackupSlot>
+            </ui:GetOutlookMailMessages>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,178" sap2010:WorkflowViewState.IdRef="Sequence_17">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:GetOutlookMailMessages Account="{x:Null}" Filter="{x:Null}" FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" ConnectionMode="LegacyConfiguration" DisplayName="Get mail messages from the Inbox in Outlook Desktop, storing them in a list named 'messages'." GetAttachements="False" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_1" MailFolder="Inbox" MarkAsRead="True" Messages="[messages]" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Top="[MaxEmailsToRead]" UseISConnection="False">
+              <ui:GetOutlookMailMessages.ConnectionDetailsBackupSlot>
+                <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="{x:Null}">
+                  <usau:BackupSlot.BackupValues>
+                    <scg:Dictionary x:TypeArguments="umae:ConnectionDetails, scg:List(x:Object)" />
+                  </usau:BackupSlot.BackupValues>
+                </usau:BackupSlot>
+              </ui:GetOutlookMailMessages.ConnectionDetailsBackupSlot>
+            </ui:GetOutlookMailMessages>
+          </Sequence>
+        </If.Else>
+      </If>
       <Assign DisplayName="Initialize a string array variable 'keywords' by splitting a comma-separated string 'SubjectKeywords'." sap:VirtualizedContainerService.HintSize="528,175" sap2010:WorkflowViewState.IdRef="Assign_13">
         <Assign.To>
           <OutArgument x:TypeArguments="s:String[]">[keywords]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="s:String[]">[SubjectKeywords.Split(","c)]</InArgument>
+          <InArgument x:TypeArguments="s:String[]">[SubjectKeywords.Trim().Split(","c)]</InArgument>
         </Assign.Value>
       </Assign>
       <Assign DisplayName="Initialize an empty list of mail messages named 'candidates'." sap:VirtualizedContainerService.HintSize="528,175" sap2010:WorkflowViewState.IdRef="Assign_14">
@@ -415,13 +454,13 @@
           <InArgument x:TypeArguments="scg:List(snm:MailMessage)">[New List(Of System.Net.Mail.MailMessage)()]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For each mail message 'msg' in the 'messages' list:" sap:VirtualizedContainerService.HintSize="528,1428" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[messages]">
+      <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For each mail message 'msg' in the 'messages' list:" sap:VirtualizedContainerService.HintSize="528,1403" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[messages]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="snm:MailMessage">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="msg" />
             </ActivityAction.Argument>
-            <Sequence sap2010:Annotation.AnnotationText="Create variables in ProcessEmails.xaml:&#xA;&#xA;SubjectKeywords (String)&#xA;&#xA;UnreadOnly (Boolean)&#xA;&#xA;MaxEmailsToRead (Int32)&#xA;&#xA;AttachmentsFolder (String)&#xA;&#xA;RestockExcelPath (String)&#xA;&#xA;OrdersLogPath (String)&#xA;&#xA;FastMinTotal (Decimal)&#xA;&#xA;FastMinTotalText (String)&#xA;&#xA;FastDays (Int32)&#xA;&#xA;BulkMinItems (Int32)&#xA;&#xA;BulkDays (Int32)&#xA;&#xA;StandardDays (Int32)&#xA;&#xA;OrdersLogPath = in_Settings(&quot;OrdersLogPath&quot;).ToString&#xA;&#xA;FastMinTotalText = in_Settings(&quot;FastMinTotal&quot;).ToString&#xA;&#xA;FastDays = Int32.Parse(in_Settings(&quot;FastDays&quot;).ToString)&#xA;&#xA;BulkMinItems = Int32.Parse(in_Settings(&quot;BulkMinItems&quot;).ToString)&#xA;&#xA;BulkDays = Int32.Parse(in_Settings(&quot;BulkDays&quot;).ToString)&#xA;&#xA;StandardDays = Int32.Parse(in_Settings(&quot;StandardDays&quot;).ToString)&#xA;&#xA;Then add:&#xA;&#xA;Add a Multiple Assign at the top:&#xA;&#xA;VB-style (UiPath expression fields often look like VB even in C# projects):&#xA;&#xA;SubjectKeywords = in_Settings(&quot;SubjectKeywords&quot;).ToString&#xA;&#xA;UnreadOnly = Boolean.Parse(in_Settings(&quot;UnreadOnly&quot;).ToString)&#xA;&#xA;MaxEmailsToRead = Int32.Parse(in_Settings(&quot;MaxEmailsToRead&quot;).ToString)&#xA;&#xA;AttachmentsFolder = in_Settings(&quot;AttachmentsFolder&quot;).ToString&#xA;&#xA;RestockExcelPath = in_Settings(&quot;RestockExcelPath&quot;).ToString&#xA;&#xA;Assign FastMinTotal = Decimal.Parse(FastMinTotalText)" DisplayName="Body" sap:VirtualizedContainerService.HintSize="526,1306" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <Sequence sap2010:Annotation.AnnotationText="Create variables in ProcessEmails.xaml:&#xA;&#xA;SubjectKeywords (String)&#xA;&#xA;UnreadOnly (Boolean)&#xA;&#xA;MaxEmailsToRead (Int32)&#xA;&#xA;AttachmentsFolder (String)&#xA;&#xA;RestockExcelPath (String)&#xA;&#xA;OrdersLogPath (String)&#xA;&#xA;FastMinTotal (Decimal)&#xA;&#xA;FastMinTotalText (String)&#xA;&#xA;FastDays (Int32)&#xA;&#xA;BulkMinItems (Int32)&#xA;&#xA;BulkDays (Int32)&#xA;&#xA;StandardDays (Int32)&#xA;&#xA;OrdersLogPath = in_Settings(&quot;OrdersLogPath&quot;).ToString&#xA;&#xA;FastMinTotalText = in_Settings(&quot;FastMinTotal&quot;).ToString&#xA;&#xA;FastDays = Int32.Parse(in_Settings(&quot;FastDays&quot;).ToString)&#xA;&#xA;BulkMinItems = Int32.Parse(in_Settings(&quot;BulkMinItems&quot;).ToString)&#xA;&#xA;BulkDays = Int32.Parse(in_Settings(&quot;BulkDays&quot;).ToString)&#xA;&#xA;StandardDays = Int32.Parse(in_Settings(&quot;StandardDays&quot;).ToString)&#xA;&#xA;Then add:&#xA;&#xA;Add a Multiple Assign at the top:&#xA;&#xA;VB-style (UiPath expression fields often look like VB even in C# projects):&#xA;&#xA;SubjectKeywords = in_Settings(&quot;SubjectKeywords&quot;).ToString&#xA;&#xA;UnreadOnly = Boolean.Parse(in_Settings(&quot;UnreadOnly&quot;).ToString)&#xA;&#xA;MaxEmailsToRead = Int32.Parse(in_Settings(&quot;MaxEmailsToRead&quot;).ToString)&#xA;&#xA;AttachmentsFolder = in_Settings(&quot;AttachmentsFolder&quot;).ToString&#xA;&#xA;RestockExcelPath = in_Settings(&quot;RestockExcelPath&quot;).ToString&#xA;&#xA;Assign FastMinTotal = Decimal.Parse(FastMinTotalText)" DisplayName="Body" sap:VirtualizedContainerService.HintSize="526,1281" sap2010:WorkflowViewState.IdRef="Sequence_5">
               <Sequence.Variables>
                 <Variable x:TypeArguments="sd:DataTable" Name="dtItems" />
                 <Variable x:TypeArguments="s:String[]" Name="lines" />
@@ -451,19 +490,19 @@
                   <InArgument x:TypeArguments="x:Boolean">[False]</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="Iterate through each keyword in the 'keywords' array to check against the email subject." sap:VirtualizedContainerService.HintSize="492,722" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[keywords]">
+              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="Iterate through each keyword in the 'keywords' array to check against the email subject." sap:VirtualizedContainerService.HintSize="492,653" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[keywords]">
                 <ui:ForEach.Body>
                   <ActivityAction x:TypeArguments="x:String">
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="x:String" Name="keyword" />
                     </ActivityAction.Argument>
-                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="490,587" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="490,518" sap2010:WorkflowViewState.IdRef="Sequence_13">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <If Condition="[msg.Subject.ToLower().Contains(keyword.ToLower())]" DisplayName="If the email subject contains the current keyword (case-insensitive), set 'matchFound' to true and break the loop." sap:VirtualizedContainerService.HintSize="456,523" sap2010:WorkflowViewState.IdRef="If_3">
+                      <If Condition="[msg.Subject.ToLower().Contains(keyword.ToLower())]" DisplayName="If the email subject contains the current keyword (case-insensitive), set 'matchFound' to true and break the loop." sap:VirtualizedContainerService.HintSize="456,454" sap2010:WorkflowViewState.IdRef="If_3">
                         <If.Then>
                           <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,295" sap2010:WorkflowViewState.IdRef="Sequence_11">
                             <sap:WorkflowViewStateService.ViewState>
@@ -483,12 +522,14 @@
                           </Sequence>
                         </If.Then>
                         <If.Else>
-                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_12">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
+                            <ui:Comment sap:VirtualizedContainerService.HintSize="416,84" sap2010:WorkflowViewState.IdRef="Comment_2" Text="Nothing" />
                           </Sequence>
                         </If.Else>
                       </If>
@@ -496,24 +537,26 @@
                   </ActivityAction>
                 </ui:ForEach.Body>
               </ui:ForEach>
-              <If Condition="[matchFound]" DisplayName="If a keyword match was found in the subject, add the current email message to the 'candidates' list." sap:VirtualizedContainerService.HintSize="492,341" sap2010:WorkflowViewState.IdRef="If_4">
+              <If Condition="[matchFound]" DisplayName="If a keyword match was found in the subject, add the current email message to the 'candidates' list." sap:VirtualizedContainerService.HintSize="492,385" sap2010:WorkflowViewState.IdRef="If_4">
                 <If.Then>
-                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,113" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_14">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <AddToCollection x:TypeArguments="snm:MailMessage" Collection="[candidates]" DisplayName="Add the email message to the list of candidates." sap:VirtualizedContainerService.HintSize="416,49" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="[msg]" />
+                    <uasa:AppendItemToList x:TypeArguments="snm:MailMessage" ItemIndex="{x:Null}" DisplayName="Append Item to List" sap:VirtualizedContainerService.HintSize="416,162" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_5" ItemToAppend="[msg]" List="[candidates]" />
                   </Sequence>
                 </If.Then>
                 <If.Else>
-                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_15">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
+                    <ui:Comment DisplayName="Comment" sap:VirtualizedContainerService.HintSize="416,84" sap2010:WorkflowViewState.IdRef="Comment_1" Text="&#xD;&#xA;Nothing" />
                   </Sequence>
                 </If.Else>
               </If>
@@ -522,5 +565,21 @@
         </ui:ForEach.Body>
       </ui:ForEach>
     </Sequence>
+    <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each currentMailMessage" sap:VirtualizedContainerService.HintSize="562,216" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[candidates]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="snm:MailMessage">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="currentMailMessage" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_18">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
   </Sequence>
 </Activity>
