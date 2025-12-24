@@ -23,8 +23,6 @@
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
-      <x:String>GlobalVariablesNamespace</x:String>
-      <x:String>GlobalConstantsNamespace</x:String>
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>UiPath.Studio.Forms.Runtime</x:String>
       <x:String>System.Reflection</x:String>
@@ -108,6 +106,8 @@
       <x:String>System.Net.NetworkInformation</x:String>
       <x:String>System.Net.Security</x:String>
       <x:String>System.Net.Sockets</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -248,7 +248,7 @@
         <InArgument x:TypeArguments="x:String" x:Key="in_AttachmentsFolder">[Settings("AttachmentsFolder").ToString]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ProcessEmails - Invoke Workflow File (ProcessEmails.xaml)" sap:VirtualizedContainerService.HintSize="450,230" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="ProcessEmails.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ProcessEmails - Invoke Workflow File (ProcessEmails.xaml)" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="ProcessEmails.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Settings">[Settings]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
