@@ -226,7 +226,7 @@
       <AssemblyReference>System.Net.Sockets</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Open Main.xaml&#xA;&#xA;Add Invoke Workflow File → choose EnsureFolders.xaml&#xA;&#xA;In Import Arguments, map:&#xA;&#xA;in_AttachmentsFolder ← your settings variable AttachmentsFolder&#xA;&#xA;in_RestockExcelPath ← RestockExcelPath&#xA;&#xA;in_OrdersLogPath ← OrdersLogPath" DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="997,805.6566666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Open Main.xaml&#xA;&#xA;Add Invoke Workflow File → choose EnsureFolders.xaml&#xA;&#xA;In Import Arguments, map:&#xA;&#xA;in_AttachmentsFolder ← your settings variable AttachmentsFolder&#xA;&#xA;in_RestockExcelPath ← RestockExcelPath&#xA;&#xA;in_OrdersLogPath ← OrdersLogPath" DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="991,637" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="Settings" />
     </Sequence.Variables>
