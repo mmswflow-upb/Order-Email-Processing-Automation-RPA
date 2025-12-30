@@ -71,12 +71,27 @@
         "tableView": false,
         "components": [
           {
-            "label": "Fast delivery if total >=",
+            "label": "Fast delivery price threshold",
             "tableView": true,
+            "defaultValue": "200",
             "key": "FastMinTotal",
             "type": "textfield",
+            "input": true
+          },
+          {
+            "label": "Fast delivery max quantity",
+            "tableView": false,
+            "delimiter": false,
+            "requireDecimal": false,
+            "truncateMultipleSpaces": false,
+            "validate": {
+              "required": true,
+              "min": 1
+            },
+            "key": "FastDeliveryMaxQuantity",
+            "type": "number",
             "input": true,
-            "defaultValue": "200"
+            "defaultValue": 10
           },
           {
             "label": "Fast Days",
