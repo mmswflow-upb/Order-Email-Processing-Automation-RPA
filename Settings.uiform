@@ -58,6 +58,17 @@
             "type": "number",
             "input": true,
             "defaultValue": 50
+          },
+          {
+            "label": "Run Time",
+            "tableView": true,
+            "validate": {
+              "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$"
+            },
+            "key": "RunTime",
+            "type": "textfield",
+            "input": true,
+            "defaultValue": "23:45"
           }
         ]
       },

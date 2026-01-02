@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Setup" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ufa="clr-namespace:UiPath.Forms.Activities;assembly=UiPath.Forms.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uwaj="clr-namespace:UiPath.Web.Activities.JSON;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Setup" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ufa="clr-namespace:UiPath.Forms.Activities;assembly=UiPath.Forms.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:uwaj="clr-namespace:UiPath.Web.Activities.JSON;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_Settings" Type="OutArgument(scg:Dictionary(x:String, x:Object))">
       <x:Property.Attributes>
@@ -137,6 +137,7 @@
       <x:String>UiPath.Web.Activities</x:String>
       <x:String>GlobalVariablesNamespace</x:String>
       <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.Platform</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -259,10 +260,13 @@
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
       <AssemblyReference>System.Collections.Specialized</AssemblyReference>
       <AssemblyReference>Microsoft.Diagnostics.FastSerialization</AssemblyReference>
+      <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Setup" sap:VirtualizedContainerService.HintSize="1561,3687" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Setup" sap:VirtualizedContainerService.HintSize="991,4598" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="Settings.json" Name="defaultSettingsPath" />
+      <Variable x:TypeArguments="x:String" Name="hasSettingsAnswer" />
       <Variable x:TypeArguments="x:Int32" Name="FastDeliveryMaxQuantity" />
       <Variable x:TypeArguments="x:String" Name="SettingsJson" />
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="FormValues" />
@@ -280,6 +284,8 @@
       <Variable x:TypeArguments="x:String" Name="settingsPath" />
       <Variable x:TypeArguments="x:String" Default="Select your settings file." Name="initialMessage" />
       <Variable x:TypeArguments="x:String" Name="accountMail" />
+      <Variable x:TypeArguments="x:String" Name="RunTime" />
+      <Variable x:TypeArguments="upr:ILocalResource" Name="SettingsJsonFile" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -455,18 +461,86 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="Assign_37">
+    <Assign sap:VirtualizedContainerService.HintSize="515,57" sap2010:WorkflowViewState.IdRef="Assign_39">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[RunTime]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">["23:45"]</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="515,57" sap2010:WorkflowViewState.IdRef="Assign_37">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[accountMail]</OutArgument>
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="x:String">["abdmariog@outlook.com"]</InArgument>
       </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="515,123" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[initialMessage]" />
-    <ui:SelectFile Multiselect="{x:Null}" SelectedFiles="{x:Null}" DisplayName="Browse For File" Filter="All files|*.*" sap:VirtualizedContainerService.HintSize="515,172" sap2010:WorkflowViewState.IdRef="SelectFile_1" InitialDirectory="C:\Users\Mario Sakka\Documents\UiPath\Order-Email-Processing-Automation-RPA" SelectedFile="[settingsPath]" />
-    <ui:PathExists Exists="{x:Null}" Resource="{x:Null}" DisplayName="Get Local File or Folder" sap:VirtualizedContainerService.HintSize="515,174" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[settingsPath]" PathType="File" />
-    <If Condition="[String.IsNullOrWhiteSpace(settingsPath)]" sap:VirtualizedContainerService.HintSize="515,1438" sap2010:WorkflowViewState.IdRef="If_1">
+    <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="515,329" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Do you have a settings file?" OptionsString="Yes;No" Title="Settings Confirmation" TopMost="False">
+      <ui:InputDialog.Result>
+        <OutArgument x:TypeArguments="x:String">[hasSettingsAnswer]</OutArgument>
+      </ui:InputDialog.Result>
+    </ui:InputDialog>
+    <If Condition="[hasSettingsAnswer.Equals(&quot;No&quot;)]" sap:VirtualizedContainerService.HintSize="515,849" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,594" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_40">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[settingsPath]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[defaultSettingsPath]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:CreateFile PathResource="{x:Null}" ContinueOnError="False" DisplayName="Create File" sap:VirtualizedContainerService.HintSize="416,180" sap2010:WorkflowViewState.IdRef="CreateFile_2" Name="Settings.json" Output="[SettingsJsonFile]" Path="./" />
+          <ui:WriteTextFile FileName="{x:Null}" Output="{x:Null}" ContinueOnError="False" DisplayName="Write Text File" File="[SettingsJsonFile]" sap:VirtualizedContainerService.HintSize="416,171" sap2010:WorkflowViewState.IdRef="WriteTextFile_6" Text="{}{}" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,116" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:SelectFile Multiselect="{x:Null}" SelectedFiles="{x:Null}" DisplayName="Browse For File" Filter="All files|*.*" sap:VirtualizedContainerService.HintSize="416,52" sap2010:WorkflowViewState.IdRef="SelectFile_1" InitialDirectory="C:\Users\Mario Sakka\Documents\UiPath\Order-Email-Processing-Automation-RPA" SelectedFile="[settingsPath]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:SelectFile>
+        </Sequence>
+      </If.Else>
+    </If>
+    <ui:PathExists Exists="{x:Null}" Resource="{x:Null}" DisplayName="Get Local File or Folder" sap:VirtualizedContainerService.HintSize="515,57" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[settingsPath]" PathType="File">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:PathExists>
+    <If Condition="[String.IsNullOrWhiteSpace(settingsPath)]" sap:VirtualizedContainerService.HintSize="515,1469" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="513,234" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>
@@ -478,7 +552,7 @@
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="513,1065" sap2010:WorkflowViewState.IdRef="Sequence_6">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="513,1096" sap2010:WorkflowViewState.IdRef="Sequence_6">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="SettingsJsonText" />
             <Variable x:TypeArguments="njl:JObject" Name="SettingsJO" />
@@ -491,7 +565,7 @@
           </sap:WorkflowViewStateService.ViewState>
           <ui:ReadTextFile File="{x:Null}" Content="[SettingsJsonText]" DisplayName="Read Text File" FileName="[settingsPath]" sap:VirtualizedContainerService.HintSize="479,128" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
           <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="479,178" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[SettingsJObject]" JsonString="[SettingsJsonText]" />
-          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,525" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,556" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
             <ui:MultipleAssign.AssignOperations>
               <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -598,6 +672,14 @@
                     <InArgument x:TypeArguments="x:Int32">[If(SettingsJObject.ContainsKey("FastDeliveryMaxQuantity"), SettingsJObject("FastDeliveryMaxQuantity").Value(Of Int32)(), FastDeliveryMaxQuantity)]</InArgument>
                   </ui:AssignOperation.Value>
                 </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_14">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[RunTime]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[If(SettingsJObject.ContainsKey("RunTime"),SettingsJObject("RunTime").ToString, RunTime)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
               </scg:List>
             </ui:MultipleAssign.AssignOperations>
           </ui:MultipleAssign>
@@ -620,6 +702,7 @@
         <InOutArgument x:TypeArguments="x:String" x:Key="OrdersLogPath">[OrdersLogPath]</InOutArgument>
         <InOutArgument x:TypeArguments="x:String" x:Key="AccountEmail">[accountMail]</InOutArgument>
         <InOutArgument x:TypeArguments="x:Int32" x:Key="FastDeliveryMaxQuantity">[FastDeliveryMaxQuantity]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="RunTime">[RunTime]</InOutArgument>
       </ufa:ShowFormActivity.Arguments>
     </ufa:ShowFormActivity>
     <Assign DisplayName="Assign all the setting values to the FormValues dictionary." sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="Assign_35">
@@ -640,7 +723,8 @@
                 {"AttachmentsFolder", AttachmentsFolder},
                 {"RestockExcelPath", RestockExcelPath},
                 {"OrdersLogPath", OrdersLogPath},
-				{"FastDeliveryMaxQuantity", FastDeliveryMaxQuantity}
+				{"FastDeliveryMaxQuantity", FastDeliveryMaxQuantity},
+				{"RunTime", RunTime}
             }]</InArgument>
       </Assign.Value>
     </Assign>
@@ -652,6 +736,7 @@
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[FormValues]</InArgument>
       </Assign.Value>
     </Assign>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;RunTime: &quot; + RunTime]" />
     <uwaj:SerializeJson Settings="{x:Null}" DisplayName="Convert the FormValues dictionary to a JSON string." sap:VirtualizedContainerService.HintSize="515,123" sap2010:WorkflowViewState.IdRef="SerializeJson_4" InputObject="[FormValues]" Result="[SettingsJson]" />
     <ui:WriteTextFile File="{x:Null}" Output="{x:Null}" DisplayName="Save the JSON string to a file named &quot;Settings.json&quot;." FileName="[settingsPath]" sap:VirtualizedContainerService.HintSize="515,167" sap2010:WorkflowViewState.IdRef="WriteTextFile_3" Text="[SettingsJson]" />
   </Sequence>
