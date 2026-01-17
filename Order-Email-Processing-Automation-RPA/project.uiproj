@@ -1,0 +1,6 @@
+{
+  "Name": "Order-Email-Processing-Automation-RPA",
+  "ProjectType": "Process",
+  "Description": "SE Project",
+  "MainFile": "Main.xaml"
+}
